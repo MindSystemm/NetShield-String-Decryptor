@@ -156,8 +156,9 @@ namespace NetShield_String_Decryptor
                                     string[] data = File.ReadAllLines(textBox2.Text);
                                     string result = data[index];
                                     string corrected = result.Replace("\"", "");
-                                    method.Body.Instructions[i] = Instruction.Create(OpCodes.Ldstr, corrected);
-                                    method.Body.Instructions[i + 1].OpCode = OpCodes.Nop;
+                                    method.Body.Instructions[i].OpCode = OpCodes.Ldstr;
+                                    method.Body.Instructions[i].Operand = corrected;
+                                   method.Body.Instructions[i + 1].OpCode = OpCodes.Nop;
                                 }
                             }
                         }
